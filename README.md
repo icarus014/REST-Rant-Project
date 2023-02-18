@@ -19,3 +19,5 @@ this is the frst step in creating our fully featured rest rant app
 ---
 
 1. As A Dev, i need to request data from the server from a specific place, so i can populate the places detail page.
+2. As a user, i need a place to view specific details of one of my pages on a new JSX page, so i can use the app
+3. As a user, I need to edit a place using a new place editing form page, so i can change the data for one of my existing places. 
