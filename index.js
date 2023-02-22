@@ -11,10 +11,10 @@ app.get('/',(req,res) => {
     res.render('home')
 })
 
-app.get('*', (req, res) => {
+app.get('*', (req,res) => {
     res.render('error404')
 })
 
 app.listen(process.env.PORT, () => {
-    console.log('i am alive')
+    console.log('ITS ALIVE !')
 })
