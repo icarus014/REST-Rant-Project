@@ -1,17 +1,20 @@
 const React = require('react')
 const Def = require('./default')
 
-function home () {
+function home() {
     return (
         <Def>
             <main>
-                <h1>HOME</h1>
+                <h1>REST Rant</h1>
+                <a href='/places'>Come see our places</a>
                 <div>
-                    <img src="/images/mason-jar.jpg" alt="mason jar" />
+                  <img src="http://placekitten.com/g/100/200" alt="Cat" />
+                  <div>
+                    Cat by <a href="placekitten.com">placekitten</a>
+                  </div>
                 </div>
-                Photo by <a href="https://unsplash.com/@andrewbui">Andrew Bui</a> on <a href="https://unsplash.com/s/photos/free">UNSPLASH</a>
                 <a href="/places">
-                    <button className='btn-primary'>Places Page</button>
+                    <button className="btn-primary">Places Page</button>
                 </a>
             </main>
         </Def>
