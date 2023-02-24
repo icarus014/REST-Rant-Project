@@ -12,6 +12,6 @@ places = [{
 	pic: 'http://placekitten.com/g/100/200'
 }]
 
-module.exports = places;
 
-module.exports = places
+
+module.exports = places;
