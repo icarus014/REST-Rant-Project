@@ -1,57 +1,48 @@
 const React = require ('react')
 const Def = require ('../default')
 
-function show ({place, id}) {
-    return (
-      <Def>
-        <main className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <h1>{ place.name }</h1>
-              <img className="img-fluid" src={ place.pic } alt={ place.name } />
-              <h3>Located in {place.city}, {place.state}</h3>
-            </div>
-            <div className="col-md-6">
-              <div className="card">
-                <div className="card-body">
-                </div>
-              </div>
-             <div className="card">
-                <div className="card-body">
-                  <h1>Rating:</h1>
-                  <p>Not Rated</p>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-body">
-                  <h1>Description:</h1>
-                  <h2>{place.showEstablished()}</h2>
-                  <h3>Serving {place.cuisines}</h3>
-                </div>
-              </div>
-              <div className="card comments">
-                <div className="card-body">
-                  <h1>Comments:</h1>
-                  <p>No comments yet!</p>
-                </div>
-               </div>
-               <div className="card">
-                <div className="card-body">
-                <a href={`/places/${id}/edit`} className="btn btn-warning"><i class="bi bi-pencil"></i> 
-                   Edit
-                </a>     
-                <form method="POST" action={`/places/${id}?_method=DELETE`}> 
-                  <button type="submit" className="btn btn-danger"><i class="bi bi-trash"></i>
-                    Delete
-                  </button>
-                </form> 
-               </div>
-              </div>
-            </div>
+function show ({place}) {
+  return (
+    <Def>
+      <main>
+        <div className="row">
+          <div className="col-sm-6">
+            <img src={place.pic} alt={place.name} />
+            <h3>
+              Located in {place.city}, {place.state}
+            </h3>
           </div>
-        </main>
-      </Def>
-    )
-  }
+          <div className="col-sm-6">
+            <h2>Rating</h2>
+            <h3>
+              Not Rated
+            </h3>
+            <h2>
+              Description
+            </h2>
+            <h3>
+              {place.showEstablished()}
+            </h3>
+            <h4>
+              Serving {place.cuisines}
+            </h4>
+            <a href={`/places/${place.id}/edit`} className="btn btn-warning">Edit</a>
+            <form method="POST" action={`/places/${place.id}?_method=DELETE`}> 
+                <button type="submit" className="btn btn-danger">Delete</button>
+            </form>
+          </div>
+          <div className="col-sm-12">
+              <h2>
+                Comments
+              </h2>
+              <h3>
+                No Comments
+              </h3>
+            </div>
+        </div>
+      </main>
+    </Def>
+  )
+}
 
   module.exports = show

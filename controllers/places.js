@@ -12,27 +12,44 @@ router.get('/', (req, res) => {
     })
 })
 
-
+// post route
 router.post('/', (req, res) => {
-  if (!req.body.pic) {
-    // Default image if one is not provided
-    req.body.pic = 'http://placekitten.com/400/400'
-  }
-
+  console.log(req.body);
   db.Place.create(req.body)
   .then(() => {
       res.redirect('/places')
   })
   .catch(err => {
-      console.log('err', err)
-      res.render('error404')
+      if (err && err.name == 'ValidationError') {
+          let message = "Validation Errors: ";
+
+          if (err && err.name == 'ValidationError') {
+            let message = 'Validation Error: '
+            for (var field in err.errors) {
+                message += ` ${field} was ${err.errors[field].value}. `
+                message += `${err.errors[field].message}`
+            }
+            console.log('Validation error message', message)
+            res.render('places/new', { message })
+          }
+          else {
+              res.render('error404')
+          }
+
+          res.render('places/new', { message });
+      }
+      else {
+          res.render('error404')
+      }
   })
 })
 
-  
-  
+router.get('/new', (req,res)=>{
+  res.render('places/new')
+})
 
-  router.get('/:id', (req, res) => {
+// ID GET ROUTE
+router.get('/:id', (req, res) => {
     db.Place.findById(req.params.id)
     .then(place => {
         res.render('places/show', { place })
@@ -42,7 +59,6 @@ router.post('/', (req, res) => {
         res.render('error404')
     })
 })
-
 
 router.get('/:id', (req, res) => {
   res.send('GET /places/:id stub')
@@ -67,5 +83,6 @@ router.post('/:id/rant', (req, res) => {
 router.delete('/:id/rant/:rantId', (req, res) => {
     res.send('GET /places/:id/rant/:rantId stub')
 })
+
 
 module.exports = router
