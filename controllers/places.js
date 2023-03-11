@@ -98,6 +98,18 @@ router.post('/:id/rant', (req, res) => {
   res.send('GET /places/:id/rant stub')
 })
 
+router.delete('/:id', (req, res) => {
+  db.Place.findByIdAndDelete(req.params.id)
+  .then(place => {
+      res.redirect('/places')
+  })
+  .catch(err => {
+      console.log('err', err)
+      res.render('error404')
+  })
+})
+
+
 router.delete('/:id/rant/:rantId', (req, res) => {
   res.send('GET /places/:id/rant/:rantId stub')
 })
